@@ -1,0 +1,12 @@
+name: 'allowlist-action'
+description: 'Validate GitHub PR owner against an allowlist'
+inputs:
+  allowlist-url:
+    description: 'File containing allowed usernames (one per line)'
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.allowlist-url }}
+    - ${{ github.actor }}
